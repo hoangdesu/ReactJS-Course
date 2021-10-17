@@ -11,7 +11,7 @@ function App() {
             id: 'e1',
             title: 'Curnon watch',
             price: 3000000,
-            date: new Date(2021, 1, 27),
+            date: new Date(2021, 1, 26),
         },
         {
             id: 'e2',
