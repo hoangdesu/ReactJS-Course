@@ -22,7 +22,7 @@ function App() {
         },
         {
             id: 'e1',
-            title: 'Airpods 2',
+            title: 'AirPods Pro',
             price: 5000000,
             date: new Date(2021, 5, 30),
         },
