@@ -7,7 +7,8 @@ function Card(props) {
     return (
         <div className={classes}>
             {props.children}
-            {console.log(props.children)}
+            {/* {console.log(props.children)} */} 
+            {/* children props is an object containing all elements wrapped around Card component */}
         </div>
     );
 }
