@@ -4,7 +4,7 @@ import './Expenses.css';
 import ExpenseItem from './Item/ExpenseItem';
 import Card from '../Card/Card';
 
-function Expenses(props) {
+const Expenses = (props) => {
     return (
         <Card className="expenses">
             <ExpenseItem props={props.expenses[0]} />
