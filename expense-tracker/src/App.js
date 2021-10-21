@@ -1,3 +1,5 @@
+import React from 'react';
+
 import Expenses from './components/Expenses';
 
 function App() {
@@ -28,12 +30,21 @@ function App() {
         },
     ];
 
+    // modern: using JSX
     return (
         <div>
             <h2>Expense Tracker</h2>
             <Expenses expenses={expenses} />
         </div>
     );
+
+    // alternative way: behind the scence, old way that return the same JSX from above
+    // return React.createElement(
+    //     'div',
+    //     {},
+    //     React.createElement('h1', {}, 'Expense Tracker using createElement'),
+    //     React.createElement(Expenses, { expenses: expenses })
+    // );
 }
 
 export default App;
