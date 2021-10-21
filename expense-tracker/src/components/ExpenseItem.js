@@ -1,5 +1,6 @@
 import './ExpenseItem.css';
 import ExpenseDate from './ExpenseDate';
+import Card from './Card';
 
 function ExpenseItem({ props }) {
 
@@ -7,13 +8,13 @@ function ExpenseItem({ props }) {
     const price = props.price.toLocaleString('vi-VI', {style: 'currency', currency: 'VND'});
 
     return (
-        <div className="expense-item">
+        <Card className="expense-item">
             <ExpenseDate props={props} />
             <div className="expense-item__description">
                 <h2>{props.title}</h2>
                 <div className="expense-item__price">{price}</div>
             </div>
-        </div>
+        </Card>
     );
 }
 
