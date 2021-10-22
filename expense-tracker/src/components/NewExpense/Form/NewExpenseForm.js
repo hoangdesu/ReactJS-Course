@@ -3,12 +3,17 @@ import React from 'react';
 import './NewExpenseForm.css';
 
 const NewExpenseForm = () => {
+
+    const changeItemHandler = (evt) => {
+        console.log(evt.target.value);
+    }
+
     return (
         <form>
             <div className="new-expense__controls">
                 <div className="new-expense__control">
-                    <label>Title</label>
-                    <input type="text" />
+                    <label>Item</label>
+                    <input type="text" onChange={changeItemHandler}/>
                 </div>
                 <div className="new-expense__control">
                     <label>Price</label>
