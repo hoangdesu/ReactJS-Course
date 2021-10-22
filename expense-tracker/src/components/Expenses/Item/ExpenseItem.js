@@ -6,7 +6,6 @@ import Card from '../../Card/Card';
 
 function ExpenseItem({ props }) {
     
-
     // useState Hook
     const [title, setTitle] = useState(props.title);
     const [newPrice, setNewPrice] = useState(props.price);
@@ -34,6 +33,7 @@ function ExpenseItem({ props }) {
     // convert to VND
     const formattedPrice = newPrice.toLocaleString('vi-VI', {style: 'currency', currency: 'VND'});
     
+    // JSX
     return (
         <Card className="expense-item">
             <ExpenseDate props={props} />
