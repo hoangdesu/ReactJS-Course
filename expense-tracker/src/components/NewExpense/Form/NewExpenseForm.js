@@ -3,22 +3,51 @@ import React, { useState } from 'react';
 import './NewExpenseForm.css';
 
 const NewExpenseForm = () => {
-    // useState Hooks
-    const [inputItem, setInputItem] = useState('');
-    const [inputPrice, setInputPrice] = useState('');
-    const [inputDate, setInputDate] = useState('');
+    // // ----- multiple states approach -----
+    // const [inputItem, setInputItem] = useState('');
+    // const [inputPrice, setInputPrice] = useState('');
+    // const [inputDate, setInputDate] = useState('');
 
-    // state change handlers
+    // // state change handlers
+    // const changeItemHandler = (evt) => {
+    //     setInputItem(evt.target.value);
+    // };
+
+    // const changePriceHandler = (evt) => {
+    //     setInputPrice(evt.target.value);
+    // };
+
+    // const changeDateHandler = (evt) => {
+    //     setInputDate(evt.target.value);
+    // };
+
+
+    // ----- one useState Hook approach ------
+    const [userInput, setUserInput] = useState({
+        inputItem: '',
+        inputPrice: '',
+        inputDate: '',
+    });
+
     const changeItemHandler = (evt) => {
-        setInputItem(evt.target.value);
+        setUserInput({
+            ...userInput,
+            inputItem: evt.target.value,
+        });
     };
 
     const changePriceHandler = (evt) => {
-        setInputPrice(evt.target.value);
+        setUserInput({
+            ...userInput,
+            inputPrice: evt.target.value,
+        });
     };
 
     const changeDateHandler = (evt) => {
-        setInputDate(evt.target.value);
+        setUserInput({
+            ...userInput,
+            inputDate: evt.target.value,
+        });
     };
 
     return (
