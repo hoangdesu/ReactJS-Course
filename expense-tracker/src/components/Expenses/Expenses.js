@@ -6,23 +6,19 @@ import Card from '../Card/Card';
 import ExpenseFilter from './Filter/ExpenseFilter';
 
 const Expenses = (props) => {
-    // local variables
-    let year = 0;
+    const [selectedYear, setSelectedYear] = useState('2021');
 
-    // event handler
+    // event handler for getting data from Filter
     const yearChangeHandler = (receivedYear) => {
-        console.log('Year from Expenses:', receivedYear);
-        year = receivedYear;
+        setSelectedYear(receivedYear);
     };
-
-    // Hook
-    const [selectedYear, setSelectedYear] = useState(year);
-    console.log("Local Year:", selectedYear);
+    
+    console.log('Selected year:', selectedYear);
 
     return (
         <div>
-            <ExpenseFilter onYearChange={yearChangeHandler} />
             <Card className="expenses">
+                <ExpenseFilter selected={selectedYear} onYearChange={yearChangeHandler} />
                 <ExpenseItem props={props.expenses[0]} />
                 <ExpenseItem props={props.expenses[1]} />
                 <ExpenseItem props={props.expenses[2]} />
