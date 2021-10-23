@@ -31,16 +31,30 @@ const App = () => {
         },
     ];
 
-    // modern: using JSX
+    // --- Event handlers ---
+    // receive data from NewExpense handler
+    const saveNewExpenseDataHandler = (receivedExpenseDataFromNewExpense) => {
+        // console.log('Data from App: ');
+        // console.log(receivedExpenseDataFromNewExpense);
+        const expenseData = {
+            ...receivedExpenseDataFromNewExpense,
+            id: Date.now() // using epoch time as id
+        }
+        console.log(expenseData);
+    };
+
+
+
+    // modern JSX
     return (
         <div>
             <h2 align="center">Expense Tracker</h2>
-            <NewExpense />
+            <NewExpense onNewExpenseSubmitToApp={saveNewExpenseDataHandler} />
             <Expenses expenses={expenses} />
         </div>
     );
 
-    // alternative way: behind the scence, old way that return the same JSX from above
+    // ----- alternative way: behind the scence, old way that return the same JSX from above
     // return React.createElement(
     //     'div',
     //     {},

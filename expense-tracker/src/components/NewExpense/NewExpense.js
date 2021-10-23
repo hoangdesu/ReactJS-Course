@@ -3,10 +3,17 @@ import React from 'react';
 import './NewExpense.css';
 import NewExpenseForm from './Form/NewExpenseForm';
 
-const NewExpense = () => {
+const NewExpense = (props) => {
+    const saveExpenseDataHandler = (receivedExpenseData) => {
+        // const expenseData = {
+        //     ...receivedExpenseData
+        // }
+        props.onNewExpenseSubmitToApp(receivedExpenseData);
+    }
+
     return (
         <div className="new-expense">
-            <NewExpenseForm />
+            <NewExpenseForm onFormSubmitToNewExpense={saveExpenseDataHandler} />
         </div>
     );
 };

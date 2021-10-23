@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import './NewExpenseForm.css';
 
-const NewExpenseForm = () => {
+const NewExpenseForm = (props) => {
     // // ----- multiple states approach -----
     // const [inputItem, setInputItem] = useState('');
     // const [inputPrice, setInputPrice] = useState('');
@@ -87,7 +87,8 @@ const NewExpenseForm = () => {
             date: new Date(userInput['inputDate'])
         }
 
-        console.log(expenseData);
+        // send data up from Form to NewExpense
+        props.onFormSubmitToNewExpense(expenseData);
 
         // 2-way binding, resetting input values
         setUserInput({
