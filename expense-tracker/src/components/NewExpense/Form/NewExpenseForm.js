@@ -74,13 +74,42 @@ const NewExpenseForm = () => {
         });
     };
 
+
+    // --- Form handler ---
+    const formSubmitHandler = (event) => {
+        // prevent form submission
+        event.preventDefault();
+        
+        // collecting data
+        const expenseData = {
+            item: userInput['inputItem'], // either notation works
+            price: userInput.inputPrice, // either notation works
+            date: new Date(userInput['inputDate'])
+        }
+
+        console.log(expenseData);
+
+        // 2-way binding, resetting input values
+        setUserInput({
+            inputItem: '',
+            inputPrice: '',
+            inputDate: '',
+        })
+    };
+
+
     // JSX
     return (
-        <form>
+        <form onSubmit={formSubmitHandler}>
             <div className="new-expense__controls">
                 <div className="new-expense__control">
                     <label>Item</label>
-                    <input type="text" onChange={changeItemHandler} />
+                    <input 
+                        type="text" 
+                        onChange={changeItemHandler} 
+                        value={userInput.inputItem} // resetting input
+                        // required 
+                        />
                 </div>
                 <div className="new-expense__control">
                     <label>Price</label>
@@ -89,6 +118,8 @@ const NewExpenseForm = () => {
                         min="1"
                         step="1"
                         onChange={changePriceHandler}
+                        value={userInput.inputPrice} // resetting input
+                        // required
                     />
                 </div>
                 <div className="new-expense__control">
@@ -98,6 +129,7 @@ const NewExpenseForm = () => {
                         min="2020-01-01"
                         max="2022-12-31"
                         onChange={changeDateHandler}
+                        value={userInput.inputDate} // resetting input
                     />
                 </div>
             </div>
