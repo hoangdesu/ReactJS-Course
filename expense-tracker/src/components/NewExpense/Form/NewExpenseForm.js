@@ -30,26 +30,51 @@ const NewExpenseForm = () => {
     });
 
     const changeItemHandler = (evt) => {
-        setUserInput({
-            ...userInput,
-            inputItem: evt.target.value,
+        // setUserInput({
+        //     ...userInput,
+        //     inputItem: evt.target.value,
+        // });
+
+        // function form for previous state
+        setUserInput((prevState) => {
+            return {
+                ...prevState,
+                inputItem: evt.target.value
+            };
         });
     };
 
     const changePriceHandler = (evt) => {
-        setUserInput({
-            ...userInput,
-            inputPrice: evt.target.value,
+        // setUserInput({
+        //     ...userInput,
+        //     inputPrice: evt.target.value,
+        // });
+        
+        // function form for previous state
+        setUserInput((prevState) => {
+            return {
+                ...prevState,
+                inputPrice: evt.target.value
+            };
         });
     };
 
     const changeDateHandler = (evt) => {
-        setUserInput({
-            ...userInput,
-            inputDate: evt.target.value,
+        // setUserInput({
+        //     ...userInput,
+        //     inputDate: evt.target.value,
+        // });
+
+        // function form for previous state
+        setUserInput((prevState) => {
+            return {
+                ...prevState,
+                inputDate: evt.target.value
+            };
         });
     };
 
+    // JSX
     return (
         <form>
             <div className="new-expense__controls">
