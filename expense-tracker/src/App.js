@@ -2,6 +2,7 @@ import React from 'react';
 
 import Expenses from './components/Expenses/Expenses';
 import NewExpense from './components/NewExpense/NewExpense';
+import Footer from './components/Footer/Footer';
 
 const App = () => {
     const expenses = [
@@ -51,6 +52,7 @@ const App = () => {
             <h2 align="center">Expense Tracker</h2>
             <NewExpense onNewExpenseSubmitToApp={saveNewExpenseDataHandler} />
             <Expenses expenses={expenses} />
+            <Footer />
         </div>
     );
 
