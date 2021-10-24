@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "author": "Hoang Nguyen",
-    "homepage": "http://hoangdesu.github.io/ReactJS-Course/expense-tracker",
+    "homepage": "http://hoangdesu.github.io/ReactJS-Course",
     "dependencies": {
         "@testing-library/jest-dom": "^5.11.6",
         "@testing-library/react": "^11.2.2",
