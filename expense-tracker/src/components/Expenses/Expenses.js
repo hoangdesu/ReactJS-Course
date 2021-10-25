@@ -12,17 +12,25 @@ const Expenses = (props) => {
     const yearChangeHandler = (receivedYear) => {
         setSelectedYear(receivedYear);
     };
-    
+
     console.log('Selected year:', selectedYear);
 
     return (
         <div>
             <Card className="expenses">
-                <ExpenseFilter selected={selectedYear} onYearChange={yearChangeHandler} />
-                <ExpenseItem props={props.expenses[0]} />
-                <ExpenseItem props={props.expenses[1]} />
-                <ExpenseItem props={props.expenses[2]} />
-                <ExpenseItem props={props.expenses[3]} />
+                <ExpenseFilter
+                    selected={selectedYear}
+                    onYearChange={yearChangeHandler}
+                />
+                {props.expenses.map((expense) => {
+                    return <ExpenseItem props={expense} />;
+                })}
+
+                {/* similar to this */}
+                {/* {[<ExpenseItem props={props.expenses[0]} />,
+                <ExpenseItem props={props.expenses[1]} />,
+                <ExpenseItem props={props.expenses[2]} />,
+                <ExpenseItem props={props.expenses[3]} />]} */}
             </Card>
         </div>
     );
