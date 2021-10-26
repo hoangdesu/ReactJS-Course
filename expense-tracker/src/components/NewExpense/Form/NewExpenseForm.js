@@ -82,8 +82,8 @@ const NewExpenseForm = (props) => {
         
         // collecting data
         const expenseData = {
-            item: userInput['inputItem'], // either notation works
-            price: userInput.inputPrice, // either notation works
+            item: userInput.inputItem, 
+            price: parseInt(userInput.inputPrice), 
             date: new Date(userInput['inputDate'])
         }
 

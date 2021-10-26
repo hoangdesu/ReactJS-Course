@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
 import './Expenses.css';
-import ExpenseItem from './Item/ExpenseItem';
-import Card from '../Card/Card';
-import ExpenseFilter from './Filter/ExpenseFilter';
+import ExpenseItem from '../Item/Item/ExpenseItem';
+import Card from '../../Card/Card';
+import ExpenseFilter from '../Filter/ExpenseFilter';
 
 const Expenses = (props) => {
     const [selectedYear, setSelectedYear] = useState('2021');
@@ -22,7 +22,9 @@ const Expenses = (props) => {
                     selected={selectedYear}
                     onYearChange={yearChangeHandler}
                 />
-                {props.expenses.map((expense) => {
+
+                {/* generate list of ExpenseItem dynamically */}
+                {props.expenses.map(expense => {
                     return <ExpenseItem expense={expense} />;
                 })}
 
