@@ -10,7 +10,6 @@ const ExpenseFilter = (props) => {
         props.onYearChange(event.target.value);
     };
     
-
     return (
         <div className="expenses-filter">
             <div className="expenses-filter__control">
@@ -20,6 +19,7 @@ const ExpenseFilter = (props) => {
                     <option value="2021">2021</option>
                     <option value="2020">2020</option>
                     <option value="2019">2019</option>
+                    <option value="all">Show all</option>
                 </select>
             </div>
         </div>

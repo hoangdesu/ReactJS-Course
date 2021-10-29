@@ -6,14 +6,19 @@ import Card from '../Card/Card';
 import ExpenseFilter from '../Filter/ExpenseFilter';
 
 const Expenses = (props) => {
-    const [selectedYear, setSelectedYear] = useState('2021');
+    const [selectedYear, setSelectedYear] = useState('all');
+    let filteredList = [];
 
     // event handler for getting data from Filter
     const yearChangeHandler = (receivedYear) => {
         setSelectedYear(receivedYear);
     };
 
-    console.log('Selected year:', selectedYear);
+    if (selectedYear === 'all') {
+        filteredList = props.expenses;
+    } else {
+        filteredList = props.expenses.filter(expense => expense.date.getFullYear() === parseInt(selectedYear));
+    }
 
     return (
         <div>
@@ -22,8 +27,8 @@ const Expenses = (props) => {
                     selected={selectedYear}
                     onYearChange={yearChangeHandler}
                 />
-                {props.expenses.map((expense) => {
-                    return <ExpenseItem expense={expense} />;
+                {filteredList.map((expense) => {
+                    return <ExpenseItem key={expense.id} expense={expense} />;
                 })}
 
                 {/* similar to this */}
