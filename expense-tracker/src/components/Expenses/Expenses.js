@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
 import './Expenses.css';
-import ExpenseItem from '../Item/ExpenseItem';
 import Card from '../Card/Card';
 import ExpenseFilter from '../Filter/ExpenseFilter';
+import ExpensesList from '../ExpensesList/ExpensesList';
 
 const Expenses = (props) => {
     const [selectedYear, setSelectedYear] = useState('all');
@@ -23,8 +23,12 @@ const Expenses = (props) => {
     }
 
     // store JSX content in a variable to make the code cleaner
-    const expensesContent = filteredList.map(expense => <ExpenseItem key={expense.id} expense={expense} />);
-    const expensesCount = filteredList.length === 0 ? <p>No expenses found.</p> : <p>Total: {filteredList.length} {(filteredList.length === 1 ? 'item' : 'items')}</p>; // not the cleanest but it looks cool =))
+    // const expensesContent = filteredList.map(expense => <ExpenseItem key={expense.id} expense={expense} />);
+    // const expensesCount = filteredList.length === 0 ? <p>No expenses found.</p> : <p>Total: {filteredList.length} {(filteredList.length === 1 ? 'item' : 'items')}</p>; // not the cleanest but it looks cool =))
+    
+    let unit = filteredList.length === 1 ? 'item' : 'items';
+
+    const expensesCount = <p>Total: {filteredList.length} {unit}</p>
 
     return (
         <div>
@@ -34,16 +38,17 @@ const Expenses = (props) => {
                     onYearChange={yearChangeHandler}
                 />
 
+                {/* 64. --- rendering list dynamically with map --- */}
                 {/* {filteredList = props.expenses.filter(
                 (expense) => expense.date.getFullYear() === parseInt(selectedYear))} */}
 
-                {/* above is similar to this */}
+                {/* 64. --- above is similar to this---  */}
                 {/* {[<ExpenseItem props={props.expenses[0]} />,
                 <ExpenseItem props={props.expenses[1]} />,
                 <ExpenseItem props={props.expenses[2]} />,
                 <ExpenseItem props={props.expenses[3]} />]} */}
 
-                {/* --- inline tenary condition--- */}
+                {/* 67. --- inline tenary condition--- */}
                 {/* {filteredList.length === 0 ? (
                     <p>No expenses found</p>
                 ) : (
@@ -53,7 +58,7 @@ const Expenses = (props) => {
                     </p>
                 )} */}
 
-                {/* --- using the && operator trick --- */}
+                {/* 67. --- using the && operator trick --- */}
                 {/* {filteredList.length === 0 && <p>No expenses found</p>}
                 {filteredList.length > 0 && (
                     <p>
@@ -62,9 +67,13 @@ const Expenses = (props) => {
                     </p>
                 )} */}
 
-                {/* Separate the logics from UI */}
-                {expensesContent}
-                {expensesCount}
+                {/* 67. Separate the logics from UI */}
+                {/* {expensesContent}
+                {expensesCount} */}
+
+                {/* 68. adding conditional return */}
+                <ExpensesList filteredList={filteredList} />
+                {filteredList.length > 0 && expensesCount}
             </Card>
         </div>
     );
