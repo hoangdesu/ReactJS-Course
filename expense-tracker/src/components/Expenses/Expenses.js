@@ -17,8 +17,14 @@ const Expenses = (props) => {
     if (selectedYear === 'all') {
         filteredList = props.expenses;
     } else {
-        filteredList = props.expenses.filter(expense => expense.date.getFullYear() === parseInt(selectedYear));
+        filteredList = props.expenses.filter(
+            (expense) => expense.date.getFullYear() === parseInt(selectedYear)
+        );
     }
+
+    // store JSX content in a variable to make the code cleaner
+    const expensesContent = filteredList.map(expense => <ExpenseItem key={expense.id} expense={expense} />);
+    const expensesCount = filteredList.length === 0 ? <p>No expenses found.</p> : <p>Total: {filteredList.length} {(filteredList.length === 1 ? 'item' : 'items')}</p>; // not the cleanest but it looks cool =))
 
     return (
         <div>
@@ -27,15 +33,38 @@ const Expenses = (props) => {
                     selected={selectedYear}
                     onYearChange={yearChangeHandler}
                 />
-                {filteredList.map((expense) => {
-                    return <ExpenseItem key={expense.id} expense={expense} />;
-                })}
 
-                {/* similar to this */}
+                {/* {filteredList = props.expenses.filter(
+                (expense) => expense.date.getFullYear() === parseInt(selectedYear))} */}
+
+                {/* above is similar to this */}
                 {/* {[<ExpenseItem props={props.expenses[0]} />,
                 <ExpenseItem props={props.expenses[1]} />,
                 <ExpenseItem props={props.expenses[2]} />,
                 <ExpenseItem props={props.expenses[3]} />]} */}
+
+                {/* --- inline tenary condition--- */}
+                {/* {filteredList.length === 0 ? (
+                    <p>No expenses found</p>
+                ) : (
+                    <p>
+                        Total: {filteredList.length}{' '}
+                        {filteredList.length === 1 ? 'expense' : 'expenses'}
+                    </p>
+                )} */}
+
+                {/* --- using the && operator trick --- */}
+                {/* {filteredList.length === 0 && <p>No expenses found</p>}
+                {filteredList.length > 0 && (
+                    <p>
+                        Total: {filteredList.length}{' '}
+                        {filteredList.length === 1 ? 'expense' : 'expenses'}
+                    </p>
+                )} */}
+
+                {/* Separate the logics from UI */}
+                {expensesContent}
+                {expensesCount}
             </Card>
         </div>
     );

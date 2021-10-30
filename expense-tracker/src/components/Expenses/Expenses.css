@@ -5,3 +5,7 @@
     width: 50rem;
     max-width: 95%;
 }
+
+p {
+    color: rgb(196, 201, 224);
+}
