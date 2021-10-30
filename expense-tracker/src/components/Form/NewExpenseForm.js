@@ -109,7 +109,7 @@ const NewExpenseForm = (props) => {
                         type="text" 
                         onChange={changeItemHandler} 
                         value={userInput.inputItem} // resetting input
-                        // required 
+                        required 
                         />
                 </div>
                 <div className="new-expense__control">
@@ -120,7 +120,7 @@ const NewExpenseForm = (props) => {
                         step="1"
                         onChange={changePriceHandler}
                         value={userInput.inputPrice} // resetting input
-                        // required
+                        required
                     />
                 </div>
                 <div className="new-expense__control">
@@ -135,6 +135,7 @@ const NewExpenseForm = (props) => {
                 </div>
             </div>
             <div className="new-expense__actions">
+                <button type="button" onClick={() => props.setFormOpened(false)}>Cancel</button>
                 <button type="submit">Add Expense</button>
             </div>
         </form>
