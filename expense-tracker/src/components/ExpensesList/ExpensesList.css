@@ -1,0 +1,10 @@
+.expense-list__notFound {
+    color: white;
+    text-align: center;
+}
+
+.expense-list {
+    list-style: none;
+    padding: 0;
+    /* padding: 10px; */
+}
