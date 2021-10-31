@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
-p {
+.footer {
     text-align: center;
     font-family: 'Ubuntu', sans-serif;
+    margin: 20px;
 }

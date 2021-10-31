@@ -4,10 +4,11 @@ import './Expenses.css';
 import Card from '../Card/Card';
 import ExpenseFilter from '../Filter/ExpenseFilter';
 import ExpensesList from '../ExpensesList/ExpensesList';
+import Chart from '../Chart/Chart';
 
 const Expenses = (props) => {
     const [selectedYear, setSelectedYear] = useState('all');
-    let filteredList = [];
+    let filteredList;
 
     // event handler for getting data from Filter
     const yearChangeHandler = (receivedYear) => {
@@ -28,7 +29,7 @@ const Expenses = (props) => {
     
     let unit = filteredList.length === 1 ? 'item' : 'items';
 
-    const expensesCount = <p>Total: {filteredList.length} {unit}</p>
+    const expensesCount = <p className="expenses-counter">Total: {filteredList.length} {unit}</p>
 
     return (
         <div>
@@ -70,6 +71,9 @@ const Expenses = (props) => {
                 {/* 67. Separate the logics from UI */}
                 {/* {expensesContent}
                 {expensesCount} */}
+
+                {/* 71. Chart component */}
+                <Chart filteredList={filteredList} />
 
                 {/* 68. adding conditional return */}
                 <ExpensesList filteredList={filteredList} />

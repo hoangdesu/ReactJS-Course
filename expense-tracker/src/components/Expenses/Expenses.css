@@ -6,6 +6,8 @@
     max-width: 95%;
 }
 
-p {
+
+.expenses-counter {
     color: rgb(196, 201, 224);
+    text-align: center;
 }

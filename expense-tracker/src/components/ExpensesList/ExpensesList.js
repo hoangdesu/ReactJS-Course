@@ -1,7 +1,7 @@
 import React from 'react';
 
-import ExpenseItem from '../Item/ExpenseItem';
 import './ExpensesList.css';
+import ExpenseItem from '../Item/ExpenseItem';
 
 const ExpensesList = (props) => {
     if (props.filteredList.length === 0) {

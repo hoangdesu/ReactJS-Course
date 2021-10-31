@@ -77,6 +77,7 @@ const App = () => {
     return (
         <div>
             <h2 align="center">Expense Tracker</h2>
+            {/* <Chart /> */}
             <NewExpense onNewExpenseSubmitToApp={saveNewExpenseDataHandler} />
             <Expenses expenses={expenseList} />
             <Footer />
