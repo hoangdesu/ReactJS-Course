@@ -24,11 +24,18 @@ const Chart = (props) => {
     props.filteredList.forEach(expense => {
         const month = expense.date.getMonth(); // month starts at 0 => Jan = 0
         chartDataPoints[month].value += expense.price;
-        console.log(expense, month);
+        // console.log(expense, month);
     });
 
     // console.log(chartDataPoints); // gottem!
+    
+    // look for max value among the expenses
+    const maxValue = chartDataPoints.reduce((max, candidate) => {
+        if (candidate.value > max.value) return candidate;
+        return max;
+    })
 
+    console.log('MAXXXXXXXXX', maxValue);
 
     return (
         <div className="chart">
@@ -52,6 +59,7 @@ const Chart = (props) => {
                     key={dataPoint.label}
                     label={dataPoint.label}
                     value={dataPoint.value}
+                    maxValue={maxValue.value}
                 />
             ))}
         </div>
