@@ -71,7 +71,7 @@ const App = () => {
         })
     };
     
-    console.log(expenseList);
+    // console.log(expenseList);
     
     // modern JSX
     return (

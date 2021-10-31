@@ -35,7 +35,7 @@ const Chart = (props) => {
         return max;
     })
 
-    console.log('MAXXXXXXXXX', maxValue);
+    // console.log('MAXXXXXXXXX', maxValue);
 
     return (
         <div className="chart">
