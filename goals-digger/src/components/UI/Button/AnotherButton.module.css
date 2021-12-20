@@ -1,0 +1,10 @@
+.button {
+    color: red;
+    /* width: 100%; */
+}
+
+@media (max-width: 768px) {
+    .button {
+        width: 100%;
+    }
+}

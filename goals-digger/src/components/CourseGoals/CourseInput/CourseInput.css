@@ -27,7 +27,7 @@
   color: red;
 }
 
-.form-control.form-control.invalid input {
+.form-control.invalid input {
   background-color: salmon;
   border: red;
 }
