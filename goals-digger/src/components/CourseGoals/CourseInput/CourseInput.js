@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 
 import Button from '../../UI/Button/Button';
+import ClearButton from '../../UI/Button/ClearButton';
 import './CourseInput.css';
+
 
 const CourseInput = (props) => {
     const [enteredValue, setEnteredValue] = useState('');
@@ -23,23 +26,27 @@ const CourseInput = (props) => {
         setIsValid(true);
     };
 
+    const onClearHandler = () => {
+        setEnteredValue('');
+        setIsValid(true);
+    };
+
     return (
         <form onSubmit={formSubmitHandler}>
-            <div className={`form-control ${isValid ? 'valid' : 'invalid'}`}>
-                <label style={{ color: isValid ? '' : 'red' }}>
+            <div className={`form-control ${isValid ? '' : 'invalid'}`}>
+                <label>
                     Course Goal
                 </label>
                 <input
                     type="text"
                     value={enteredValue}
                     onChange={goalInputChangeHandler}
-                    style={{
-                        backgroundColor: isValid ? 'transparent' : 'salmon',
-                        border: isValid ? '' : 'red',
-                    }}
                 />
             </div>
+            <div style={{ width:'100%', display: 'flex', flexDirection:'row', justifyContent: 'space-between' }}>
             <Button type="submit">Add Goal</Button>
+            <ClearButton type="button" onClick={onClearHandler} >Clear</ClearButton>
+            </div>
         </form>
     );
 };
