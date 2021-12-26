@@ -9,4 +9,4 @@ const AnotherButton = (props) => {
     )
 }
 
-export default AnotherButton
+export default AnotherButton;
