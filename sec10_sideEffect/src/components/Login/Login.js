@@ -30,8 +30,8 @@ const passwordReducer = (state, action) => {
 const Login = (props) => {
     // const [enteredEmail, setEnteredEmail] = useState('');
     // const [emailIsValid, setEmailIsValid] = useState();
-    const [enteredPassword, setEnteredPassword] = useState('');
-    const [passwordIsValid, setPasswordIsValid] = useState();
+    // const [enteredPassword, setEnteredPassword] = useState('');
+    // const [passwordIsValid, setPasswordIsValid] = useState();
     const [formIsValid, setFormIsValid] = useState(false);
 
     // USE REDUCER
@@ -52,21 +52,25 @@ const Login = (props) => {
       }
     }, []);
 
+    // Avoid unnecessary effect executions, optimize code! Trigger only when isValid states change 
+    const { isValid: emailIsValid } = emailState;
+    const { isValid: passwordIsValid } = passwordState;
 
     // DEBOUNCING EFFECT: CHECK INPUT EVERY 500ms
-    // useEffect(() => {
-    //     const debounceTimeout = setTimeout(() => {
-    //         console.log('checking form valid');
-    //         setFormIsValid(
-    //             enteredEmail.includes('@') && enteredPassword.trim().length > 6
-    //         );
-    //     }, 500);
+    useEffect(() => {
+        const debounceTimeout = setTimeout(() => {
+            console.log('checking form valid');
+            // setFormIsValid(
+            //     enteredEmail.includes('@') && enteredPassword.trim().length > 6
+            // );
+            setFormIsValid(emailIsValid && passwordIsValid);
+        }, 500);
 
-    //     return () => {
-    //       console.log('input clean up');
-    //       clearTimeout(debounceTimeout);
-    //     };
-    // }, [enteredEmail, enteredPassword]);
+        return () => {
+          console.log('input clean up');
+          clearTimeout(debounceTimeout);
+        };
+    }, [emailIsValid, passwordIsValid]);
 
 
     // HANDLERS
@@ -80,7 +84,7 @@ const Login = (props) => {
         //     emailState.isValid && event.target.value.trim().length > 6
         // );
 
-        setFormIsValid(emailState.isValid && passwordState.isValid);
+        // setFormIsValid(emailState.isValid && passwordState.isValid);
     };
 
     const passwordChangeHandler = (event) => {
@@ -91,7 +95,7 @@ const Login = (props) => {
         // setFormIsValid(
         //     emailState.isValid && event.target.value.trim().length > 6
         // );
-        setFormIsValid(emailState.isValid && passwordState.isValid);
+        // setFormIsValid(emailState.isValid && passwordState.isValid);
 
     };
 
