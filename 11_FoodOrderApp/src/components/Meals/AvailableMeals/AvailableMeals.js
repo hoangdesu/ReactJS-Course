@@ -1,11 +1,13 @@
 import React from 'react';
 import classes from './AvailableMeals.module.css';
+import Card from '../../UI/Card';
+import MealItem from '../MealItem/MealItem';
 
 const DUMMY_MEALS = [
     {
         id: 'm1',
         name: 'Sushi',
-        description: 'Finest fish and veggies',
+        description: 'Something fishy 🍣',
         price: 22.99
     },
     {
@@ -17,7 +19,7 @@ const DUMMY_MEALS = [
     {
         id: 'm3',
         name: 'Takoyaki',
-        description: 'Octopus, for eating',
+        description: 'Octopus, for eating, not hentai',
         price: 12.99
     },
     {
@@ -29,19 +31,21 @@ const DUMMY_MEALS = [
     {
         id: 'm5',
         name: 'Ramen',
-        description: 'Very nice soupy noodle',
+        description: 'Naruto\'s favorite dish',
         price: 9.87
     }
 ];
 
 const AvailableMeals = () => {
     const mealList = DUMMY_MEALS.map((meal) => (
-        <li key={meal.id}>{meal.name}</li>
+        <MealItem key={meal.id} id={meal.id} name={meal.name} description={meal.description} price={meal.price} />
     ));
-    
+
     return (
         <section className={classes.meals}>
-            <ul>{mealList}</ul>
+            <Card>
+                <ul>{mealList}</ul>
+            </Card>
         </section>
     );
 };
