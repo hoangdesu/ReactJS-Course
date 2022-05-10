@@ -1,0 +1,32 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import classes from './Modal.module.css';
+
+const Backdrop = () => <div className={classes.backdrop} />;
+
+const Overlay = props => {
+    return (
+        <div className={classes.modal}>
+            <div className={classes.content}>{props.children}</div>
+        </div>
+    );
+};
+
+const overlayDiv = document.querySelector('#overlays');
+
+const Modal = (props) => {
+    return (
+        <>
+            {/* <Backdrop />
+            <Overlay>{props.children}</Overlay> */}
+            {/* The above could be use, but it will make HTML all over the places. */}
+            {/* Better solution: use portal */}
+
+            {ReactDOM.createPortal(<Backdrop />, overlayDiv)}
+            {ReactDOM.createPortal(<Overlay>{props.children}</Overlay>, overlayDiv)}
+        </>
+    );
+};
+
+export default Modal;
