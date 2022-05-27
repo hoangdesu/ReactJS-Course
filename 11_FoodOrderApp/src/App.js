@@ -10,7 +10,6 @@ const App = () => {
     const [cartOpen, setCartOpen] = useState(false);
 
     const toggleCartOverlay = () => {
-        console.log('oh yeah');
         setCartOpen((cartOpen) => !cartOpen);
     };
 
