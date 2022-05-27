@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 
 import Header from './components/Layout/Header';
 import Meals from './components/Meals';
@@ -7,27 +7,28 @@ import CartProvider from './store/CartProvider';
 import CartContext from './store/cart-context';
 
 const App = () => {
-    // const [cartOpen, setCartOpen] = useState(false);
+    const [cartOpen, setCartOpen] = useState(false);
 
-    // const toggleCartOverlay = () => {
-    //     setCartOpen((cartOpen) => !cartOpen);
-    // };
+    const toggleCartOverlay = () => {
+        console.log('oh yeah');
+        setCartOpen((cartOpen) => !cartOpen);
+    };
 
     // --- switch to state manangement for cart using context
-
-    const cartCtx = useContext(CartContext);
+    // const cartCtx = useContext(CartContext);
 
     return (
         <CartProvider>
-            {/* {cartOpen && <Cart toggleCartOverlay={toggleCartOverlay} />}
+            {cartOpen && <Cart toggleCartOverlay={toggleCartOverlay} />}
             <Header toggleCartOverlay={toggleCartOverlay} />
-            <Meals /> */}
+            <Meals />
 
             {/* ^ old component using useState. Switched to context */}
-            {console.log("APP: ", cartCtx.cartOpen)}
-            {cartCtx.cartOpen && <Cart />}
-            <Header />
-            <Meals />
+
+            {/* toggle cart with context somehow doesn't work :/ */}
+            {/* {console.log("APP: ", cartCtx.cartOpen)} */}
+            {/* {cartCtx.cartOpen && <Cart />} */}
+
         </CartProvider>
     );
 };

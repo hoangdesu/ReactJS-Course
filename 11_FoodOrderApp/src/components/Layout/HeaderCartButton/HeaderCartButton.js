@@ -8,7 +8,7 @@ const HeaderCartButton = ({ toggleCartOverlay }) => {
     const cartCtx = useContext(CartContext);
 
     return (
-        <button className={classes.button} onClick={cartCtx.toggleCartOverlay}>
+        <button className={classes.button} onClick={toggleCartOverlay}>
             <span className={classes.icon}>
                 <CartIcon />
             </span>
