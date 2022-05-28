@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ReactDOM from 'react-dom';
 
 import classes from './Modal.module.css';
+import CartContext from '../../../store/cart-context';
 
-const Backdrop = ({ toggleCartOverlay }) => (
-    <div className={classes.backdrop} onClick={toggleCartOverlay} />
-);
+const Backdrop = () => {
+    const cartCtx = useContext(CartContext);
+    return (
+        <div className={classes.backdrop} onClick={cartCtx.toggleCartOverlay} />
+    );
+};
 
 const Overlay = ({ children }) => {
     return (
@@ -17,7 +21,7 @@ const Overlay = ({ children }) => {
 
 const overlayDiv = document.querySelector('#overlays');
 
-const Modal = ({ children, toggleCartOverlay }) => {
+const Modal = ({ children }) => {
     return (
         <>
             {/* <Backdrop />
@@ -26,7 +30,7 @@ const Modal = ({ children, toggleCartOverlay }) => {
             {/* Better solution: use portal */}
 
             {ReactDOM.createPortal(
-                <Backdrop toggleCartOverlay={toggleCartOverlay} />,
+                <Backdrop />,
                 overlayDiv
             )}
             {ReactDOM.createPortal(<Overlay>{children}</Overlay>, overlayDiv)}

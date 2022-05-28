@@ -5,8 +5,8 @@ const CartContext = createContext({
     totalAmount: 0,
     addItem: (item) => {},
     removeItem: (id) => {},
-    // cartOpen: bool,
-    // toggleCartOverlay: () => {},
+    cartOpen: false,
+    toggleCartOverlay: () => {},
 });
 
 export default CartContext;

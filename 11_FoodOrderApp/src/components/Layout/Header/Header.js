@@ -3,12 +3,8 @@ import React, { Fragment, useContext } from 'react';
 import classes from './Header.module.css';
 import headerImage from '../../../assets/header1.jpeg';
 import HeaderCartButton from '../HeaderCartButton';
-import CartContext from '../../../store/cart-context';
 
 const Header = ({ toggleCartOverlay }) => {
-    const cartContext = useContext(CartContext);
-
-    // toggleCartOverlay();
 
     return (
         // Using Context.Consumer approach, not clean :/
@@ -34,7 +30,7 @@ const Header = ({ toggleCartOverlay }) => {
         <>
             <header className={classes['header']}>
                 <h1>Brian Sushi</h1>
-                <HeaderCartButton toggleCartOverlay={toggleCartOverlay} />
+                <HeaderCartButton />
             </header>
             <div className={classes['main-image']}>
                 <img src={headerImage} alt="Header" />
