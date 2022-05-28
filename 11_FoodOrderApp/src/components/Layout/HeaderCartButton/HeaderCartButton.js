@@ -6,6 +6,13 @@ import CartContext from '../../../store/cart-context';
 
 const HeaderCartButton = () => {
     const cartCtx = useContext(CartContext);
+    
+    const cartItemsNum = cartCtx.items.reduce((currentValue, item) => {
+        return currentValue + item.amount;
+    }, 0);
+
+    // currentValue will get carried on every execution. 
+    // Initially currentValue = 0
 
     return (
         <button className={classes.button} onClick={cartCtx.toggleCartOverlay}>
@@ -13,7 +20,7 @@ const HeaderCartButton = () => {
                 <CartIcon />
             </span>
             <span>Your Cart</span>
-            <span className={classes.badge}>{cartCtx.items.length}</span>
+            <span className={classes.badge}>{cartItemsNum}</span>
         </button>
         
     );
