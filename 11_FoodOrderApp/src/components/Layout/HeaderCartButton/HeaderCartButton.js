@@ -8,8 +8,12 @@ const HeaderCartButton = () => {
     const cartCtx = useContext(CartContext);
     
     const cartItemsNum = cartCtx.items.reduce((currentValue, item) => {
+        // console.log('currentValue: ', currentValue);
+        // console.log('item amount:', item.amount);
         return currentValue + item.amount;
     }, 0);
+
+    console.log('cartItemsNum:', cartItemsNum);
 
     // currentValue will get carried on every execution. 
     // Initially currentValue = 0

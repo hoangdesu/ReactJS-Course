@@ -1,13 +1,31 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import Input from '../../../UI/Input';
 
 import classes from './MealItemForm.module.css';
 import CartContext from '../../../../store/cart-context';
 
-const MealItemForm = ({ id }) => {
+const MealItemForm = ({ id, onAddToCart }) => {
     const cartCtx = useContext(CartContext);
+    const inputRef = useRef(null);
+    const [invalidAmount, setInvalidAmount] = useState(false);
+
     const onFormSubmit = (e) => {
         e.preventDefault();
+
+        const amountValue = inputRef.current.value;
+        const amountValueNum = +amountValue;
+
+        // input validation. Stop executing if one of these conditions is met
+        if (
+            amountValue.trim().length === 0 ||
+            amountValueNum < 1 ||
+            amountValueNum > 5
+        ) {
+            setInvalidAmount(true);
+            return;
+        }
+
+        onAddToCart(amountValueNum);
     };
 
     return (
@@ -21,8 +39,10 @@ const MealItemForm = ({ id }) => {
                     min: 1,
                     max: 10
                 }}
+                ref={inputRef}
             />
-            <button onClick={cartCtx.addItem}>+ Add</button>
+            <button>+ Add</button>
+            {invalidAmount && <p>Please enter a valid amount (1-5)</p>}
         </form>
     );
 };
