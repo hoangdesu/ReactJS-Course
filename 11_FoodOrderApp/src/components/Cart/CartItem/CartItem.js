@@ -1,15 +1,17 @@
 import classes from './CartItem.module.css';
 
 const CartItem = ({ item, onAdd, onRemove }) => {
-    const { name, price, totalAmount } = item;
+    const { name, price, amount } = item;
+
     const formattedPrice = `${new Intl.NumberFormat('vi-VN', {
         style: 'currency',
         currency: 'VND'
     }).format(price * 22000)}`;
-    const formattedTotalAmount = `${new Intl.NumberFormat('vi-VN', {
+
+    const formattedAmount = `${new Intl.NumberFormat('vi-VN', {
         style: 'currency',
         currency: 'VND'
-    }).format(price * totalAmount * 22000)}`;
+    }).format(price * amount * 22000)}`;
 
     return (
         <li className={classes['cart-item']}>
@@ -17,7 +19,7 @@ const CartItem = ({ item, onAdd, onRemove }) => {
                 <h2>{name}</h2>
                 <div className={classes.summary}>
                     <span className={classes.price}>{formattedPrice}</span>
-                    <span className={classes.amount}>x {totalAmount}</span>
+                    <span className={classes.amount}>x {amount}</span>
                 </div>
             </div>
             <div>
@@ -25,7 +27,7 @@ const CartItem = ({ item, onAdd, onRemove }) => {
                     <button onClick={onRemove}>−</button>
                     <button onClick={onAdd}>+</button>
                 </div>
-                <div className={classes.sumItems}>{formattedTotalAmount}</div>
+                <div className={classes.sumItems}>{formattedAmount}</div>
             </div>
         </li>
     );

@@ -11,17 +11,18 @@ const Cart = () => {
     const cartCtx = useContext(CartContext);
 
     const addItemToCartHandler = (item) => {
-        cartCtx.addItem(item);
+        cartCtx.addItem({ ...item, amount: 1 });
     };
 
     const removeItemFromCartHandler = (id) => {
-        console.log('----');
+        cartCtx.removeItem(id);
     };
 
     const formattedTotalAmount = `${new Intl.NumberFormat('vi-VN', {
         style: 'currency',
         currency: 'VND'
     }).format(cartCtx.totalAmount * 22000)}`;
+
     const cartItems = cartCtx.items.map((item) => (
         <CartItem
             key={item.id}
@@ -41,7 +42,7 @@ const Cart = () => {
                 </div>
             ) : (
                 <>
-                <h1>Your orders</h1>
+                    <h1>Your orders</h1>
                     <ul className={classes['cart-items']}>{cartItems}</ul>
                     <div className={classes['total']}>
                         <span>Total amount</span>

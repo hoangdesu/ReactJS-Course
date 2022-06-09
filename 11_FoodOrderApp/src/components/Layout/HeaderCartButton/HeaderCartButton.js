@@ -9,8 +9,8 @@ const HeaderCartButton = () => {
     
     const cartItemsNum = cartCtx.items.reduce((currentValue, item) => {
         // console.log('currentValue: ', currentValue);
-        // console.log('item amount:', item.totalAmount);
-        return currentValue + item.totalAmount;
+        // console.log('item amount:', item.amount);
+        return currentValue + item.amount;
     }, 0);
 
     console.log('cartItemsNum:', cartItemsNum);

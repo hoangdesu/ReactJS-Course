@@ -24,7 +24,7 @@ const cartReducer = (state, action) => {
             updatedItems = state.items.concat(action.item);
             // updatedItems = [...state.items, action.item]; // the same as concat
         } else {
-            state.items[duplicatedIndex].totalAmount += action.item.totalAmount;
+            state.items[duplicatedIndex].amount += action.item.amount;
 
             // lecturer's approach, update the whole object :/:
             // const duplicatedItem = state.items[duplicatedIndex];
@@ -40,7 +40,7 @@ const cartReducer = (state, action) => {
         }
 
         const updatedTotalAmount =
-            state.totalAmount + action.item.price * action.item.totalAmount;
+            state.totalAmount + action.item.price * action.item.amount;
 
         // console.log('updatedTotalAmount', updatedTotalAmount);
         // console.log('state.totalAmount', state.totalAmount);
@@ -52,6 +52,33 @@ const cartReducer = (state, action) => {
             totalAmount: updatedTotalAmount
         };
     }
+
+    if (action.type === ACTIONS.REMOVE_ITEM) {
+        const currentItemIndex = state.items.findIndex(item => item.id === action.id);
+        const currentItem = state.items[currentItemIndex];
+
+        let updatedItemList;
+        
+        // if item's amount is 1, remove from the cart too
+        if (currentItem.amount === 1) {
+            updatedItemList = state.items.filter(item => item.id !== action.id);
+        } else {
+            updatedItemList = [...state.items];
+            const updatedItem = {
+                ...currentItem,
+                amount: currentItem.amount - 1
+            }
+            updatedItemList[currentItemIndex] = updatedItem;
+        }
+
+        const updatedTotalAmount = state.totalAmount - currentItem.price;
+        
+        return {
+            items: updatedItemList,
+            totalAmount: updatedTotalAmount
+        };
+    }
+
     return initialCartState;
 };
 
@@ -67,7 +94,9 @@ const CartProvider = (props) => {
     const addItemHandler = (item) => {
         dispatchCartAction({ type: ACTIONS.ADD_ITEM, item: item });
     };
-    const removeItemHandler = (id) => {};
+    const removeItemHandler = (id) => {
+        dispatchCartAction({ type: ACTIONS.REMOVE_ITEM, id: id })
+    };
 
     const toggleCartOverlayHandler = () => {
         // console.log(cartOpen, 'cartOpen state provider');

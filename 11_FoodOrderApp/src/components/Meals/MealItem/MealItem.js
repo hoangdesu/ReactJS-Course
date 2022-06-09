@@ -14,7 +14,7 @@ const MealItem = ({ id, name, description, price }) => {
         cartContext.addItem({
             id: id,
             name: name,
-            totalAmount: amount,
+            amount: amount,
             price: price // price as number in USD, not the formatted price (just for display)
         })
     };
