@@ -19,7 +19,7 @@ const MealItemForm = ({ id, onAddToCart }) => {
         if (
             amountValue.trim().length === 0 ||
             amountValueNum < 1 ||
-            amountValueNum > 5
+            amountValueNum > 10
         ) {
             setInvalidAmount(true);
             return;
@@ -42,7 +42,7 @@ const MealItemForm = ({ id, onAddToCart }) => {
                 ref={inputRef}
             />
             <button>+ Add</button>
-            {invalidAmount && <p>Please enter a valid amount (1-5)</p>}
+            {invalidAmount && <p>Please enter a valid amount (1-10)</p>}
         </form>
     );
 };

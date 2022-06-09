@@ -14,10 +14,12 @@ const MealItem = ({ id, name, description, price }) => {
         cartContext.addItem({
             id: id,
             name: name,
-            amount: amount,
+            totalAmount: amount,
             price: price // price as number, not the formatted price (just for display)
         })
     };
+
+    console.log('context items[]:', cartContext.items);
 
     return (
         <li className={classes.meal}>

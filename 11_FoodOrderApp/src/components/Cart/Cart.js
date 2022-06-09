@@ -1,39 +1,62 @@
 import React, { useContext } from 'react';
 import CartContext from '../../store/cart-context';
+
 import Modal from '../UI/Modal';
+import CartItem from './CartItem';
+import emptyCart from '../../assets/emptyCart.jpeg';
 
 import classes from './Cart.module.css';
-
-const DUMMY_ITEMS = [
-    {
-        id: '1',
-        name: 'sushi',
-        amount: 2,
-        price: 69.99
-    },
-    {
-        id: '2',
-        name: 'ramen',
-        amount: 2,
-        price: 59.99
-    },
-];
 
 const Cart = () => {
     const cartCtx = useContext(CartContext);
 
-    const cartItems = DUMMY_ITEMS.map((item) => <li>{item.name}</li>);
+    const addItemToCartHandler = (item) => {console.log('++');};
+    const removeItemFromCartHandler = (id) => {
+        console.log('----');
+    };
+
+    const formattedTotalAmount = `${new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+    }).format(cartCtx.totalAmount * 22000)}`;
+    const cartItems = cartCtx.items.map((item) => (
+        <CartItem
+            key={item.id}
+            item={item}
+            onAdd={() => addItemToCartHandler(item)}
+            onRemove={removeItemFromCartHandler.bind(null, item.id)} // .bind() -> same as above
+        />
+    ));
+    console.log('total amount', cartCtx.totalAmount);
 
     return (
         <Modal>
-            <ul className={classes['cart-items']}>{cartItems}</ul>
-            <div className={classes['total']}>
-                <span>Total amount</span>
-                <span>69.99</span>
-            </div>
+            {cartCtx.items.length === 0 ? (
+                <div style={{ textAlign: 'center' }}>
+                    <h1>Your cart is empty</h1>
+                    <img src={emptyCart} alt="empty cart" width="50%" />
+                </div>
+            ) : (
+                <>
+                <h1>Your orders</h1>
+                    <ul className={classes['cart-items']}>{cartItems}</ul>
+                    <div className={classes['total']}>
+                        <span>Total amount</span>
+                        <span>{formattedTotalAmount}</span>
+                    </div>
+                </>
+            )}
+
             <div className={classes['actions']}>
-                <button className={classes['button--alt']} onClick={cartCtx.toggleCartOverlay}>Close</button>
-                <button className={classes.button}>Order</button>
+                <button
+                    className={classes['button--alt']}
+                    onClick={cartCtx.toggleCartOverlay}
+                >
+                    Close
+                </button>
+                {cartCtx.items.length > 0 && (
+                    <button className={classes.button}>Order</button>
+                )}
             </div>
         </Modal>
     );
