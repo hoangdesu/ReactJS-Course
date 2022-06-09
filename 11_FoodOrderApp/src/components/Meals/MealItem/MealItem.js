@@ -15,7 +15,7 @@ const MealItem = ({ id, name, description, price }) => {
             id: id,
             name: name,
             totalAmount: amount,
-            price: price // price as number, not the formatted price (just for display)
+            price: price // price as number in USD, not the formatted price (just for display)
         })
     };
 

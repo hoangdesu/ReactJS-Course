@@ -10,7 +10,10 @@ import classes from './Cart.module.css';
 const Cart = () => {
     const cartCtx = useContext(CartContext);
 
-    const addItemToCartHandler = (item) => {console.log('++');};
+    const addItemToCartHandler = (item) => {
+        cartCtx.addItem(item);
+    };
+
     const removeItemFromCartHandler = (id) => {
         console.log('----');
     };

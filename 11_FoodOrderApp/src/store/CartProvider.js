@@ -11,7 +11,34 @@ const ACTIONS = {
 const cartReducer = (state, action) => {
     if (action.type === ACTIONS.ADD_ITEM) {
         // state.items.push(action.item) -> can't use push: modify old state. Need new state: use concat()
-        const updatedItems = state.items.concat(action.item);
+        
+        // need to check if items getting added is already inside array
+        // my implementation, lecture also uses findIndex =)))
+        // "great minds think alike" hehe xd!
+        const duplicatedIndex = state.items.findIndex(item => item.id === action.item.id);
+        // console.log(duplicatedItem);
+
+        let updatedItems;
+        if (duplicatedIndex === -1) { // no duplication
+            // console.log('new item added');
+            updatedItems = state.items.concat(action.item);
+            // updatedItems = [...state.items, action.item]; // the same as concat
+        } else {
+            state.items[duplicatedIndex].totalAmount += action.item.totalAmount;
+
+            // lecturer's approach, update the whole object :/:
+            // const duplicatedItem = state.items[duplicatedIndex];
+            // const updatedItem = {
+            //     ...duplicatedItem,
+            //     totalAmount: duplicatedItem.totalAmount + action.item.totalAmount
+            // };
+            // updatedItems = [...state.items];
+            // updatedItems[duplicatedIndex] = updatedItem;
+
+            updatedItems = [...state.items];
+            console.log('duplicated:', duplicatedIndex, state.items);
+        }
+
         const updatedTotalAmount =
             state.totalAmount + action.item.price * action.item.totalAmount;
 

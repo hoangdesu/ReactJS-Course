@@ -2,10 +2,8 @@ import React, { useState, useContext, useRef } from 'react';
 import Input from '../../../UI/Input';
 
 import classes from './MealItemForm.module.css';
-import CartContext from '../../../../store/cart-context';
 
 const MealItemForm = ({ id, onAddToCart }) => {
-    const cartCtx = useContext(CartContext);
     const inputRef = useRef(null);
     const [invalidAmount, setInvalidAmount] = useState(false);
 
