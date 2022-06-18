@@ -21,9 +21,9 @@ const HeaderCartButton = () => {
     // Initially currentValue = 0
 
     // video approach
-    const cartBtnClasses = `${classes.button} ${
-        btnAnimated ? classes.bump : ''
-    }`;
+    // const cartBtnClasses = `${classes.button} ${
+    //     btnAnimated ? classes.bump : ''
+    // }`;
 
     useEffect(() => {
         // my approach
